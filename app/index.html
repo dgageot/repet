@@ -15,38 +15,23 @@ ng-app: devoxx
         <ul>
           <li>
             Front
-            <span class="front box"
-                  ng-class="'box-' + i"
-                  ng-show="i <= basket.basket.front"
-                  ng-repeat="i in [1,2,3,4,5]"></span>
+            <score category="front" value="basket.basket.front"></score>
           </li>
           <li>
             Back
-            <span class="back box"
-                  ng-class="'box-' + i"
-                  ng-show="i <= basket.basket.back"
-                  ng-repeat="i in [1,2,3,4,5]"></span>
+            <score category="back" value="basket.basket.back"></score>
           </li>
           <li>
             Database
-            <span class="database box"
-                  ng-class="'box-' + i"
-                  ng-show="i <= basket.basket.database"
-                  ng-repeat="i in [1,2,3,4,5]"></span>
+            <score category="database" value="basket.basket.database"></score>
           </li>
           <li>
             Test
-            <span class="test box"
-                  ng-class="'box-' + i"
-                  ng-show="i <= basket.basket.test"
-                  ng-repeat="i in [1,2,3,4,5]"></span>
+            <score category="test" value="basket.basket.test"></score>
           </li>
           <li>
             Hipster
-            <span class="hipster box"
-                  ng-class="'box-' + i"
-                  ng-show="i <= basket.basket.hipster"
-                  ng-repeat="i in [1,2,3,4,5]"></span>
+            <score category="hipster" value="basket.basket.hipster"></score>
           </li>
           <li>
             <hr/>

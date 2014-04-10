@@ -21,3 +21,10 @@ angular.module 'devoxx', ['ngAnimate']
 
     showRemove: (email) ->
       email in @emails
+
+.directive 'score', ->
+    restrict: 'E'
+    scope:
+      value: '='
+      category: '@'
+    templateUrl: '/directives/score.html'

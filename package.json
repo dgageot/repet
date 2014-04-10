@@ -1,0 +1,27 @@
+{
+  "name": "devoxx-quickstart",
+  "version": "1.0.0",
+  "description": "Node dependencies for devoxx-quickstart tests",
+  "main": "protractor.conf.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/CodeStory/devoxx-quickstart.git"
+  },
+  "author": "Jean-Laurent de Morlhon && David Gageot",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CodeStory/devoxx-quickstart/issues"
+  },
+  "homepage": "https://github.com/CodeStory/devoxx-quickstart",
+  "devDependencies": {
+    "protractor": "^0.20.1",
+    "coffee-script": "^1.7.1",
+    "grunt-cli": "^0.1.13",
+    "grunt": "^0.4.4",
+    "grunt-protractor-runner": "^0.2.4",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}

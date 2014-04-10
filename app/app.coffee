@@ -19,6 +19,10 @@ angular.module 'devoxx', ['ngAnimate']
       @$http.get("/basket?emails=#{@emails}").success (data) =>
         @basket = data
 
+    clear: ->
+      @emails = []
+      @refresh()
+
     showRemove: (email) ->
       email in @emails
 

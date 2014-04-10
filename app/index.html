@@ -11,6 +11,8 @@ ng-app: devoxx
       <a class="navbar-brand" href="#">Chasseur de d€v.io</a>
     </div>
     <div class="navbar-right">
+      <a id="clear" href="" ng-click="basket.clear()">x</a>
+
       <div id="basket" ng-if="basket.basket.sum > 0">
         <ul>
           <li>
@@ -46,7 +48,7 @@ ng-app: devoxx
 
   <div class="container-fluid">
     [[#each site.data.developers]]
-    <div class="row profil">
+    <div class="row profil" id="[[prenom]]">
       <h1>[[prenom]]</h1>
 
       <h3>Tarif [[price]]€ / jour</h3>

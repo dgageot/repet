@@ -1,0 +1,32 @@
+[
+  {
+    "email": "david@gageot.net",
+    "prenom": "David",
+    "job": "Développeur Java/Web",
+    "ville": "Paris, France",
+    "description": "Bonjour, je suis développeur indépendant. Ma passion ? L'écriture de logiciels pointus mais simples.",
+    "tags": ["Java", "Web", "Javascript", "Agile"],
+    "photo": "david",
+    "price": 1000
+  },
+  {
+    "email": "mathilde@lemee.net",
+    "prenom": "Mathilde",
+    "job": "Ingénieur Mobile / Java",
+    "ville": "Paris, France",
+    "description": "Freelance depuis plus de 3 ans, j'interviens sur des projets en tant que développeur / lead technique / scrum master.",
+    "tags": ["Java", "Jee", "Spring", "Hibernate", "Jsp"],
+    "photo": "mathilde",
+    "price": 700
+  },
+  {
+    "email": "jeanlaurent@morlhon.net",
+    "prenom": "Jean-Laurent",
+    "job": "Blogger du dimanche",
+    "ville": "Houilles, France",
+    "description": "Freelance depuis plus de 1 an.",
+    "tags": ["Java", "Test", "CoffeeScript", "Node", "Javascript"],
+    "photo": "jl",
+    "price": 1000
+  }
+]

@@ -1,0 +1,34 @@
+---
+layout: default
+title: Chasseur de dev.io
+styles: [/webjars/bootstrap/3.1.1/css/bootstrap.css, style.less]
+ng-app: devoxx
+---
+
+<nav class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#">Chasseur de dev.io</a>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  [[#each site.data.developers]]
+  <div class="row profil">
+    <h1>[[prenom]]</h1>
+
+    <h3>Tarif [[price]]€ / jour</h3>
+
+    <p>[[job]] - [[ville]]</p>
+
+    <p>[[description]]</p>
+
+    <div>
+      [[#each tags]]
+      <span class="label label-danger">[[.]]</span>
+      [[/each]]
+    </div>
+
+    <img src="images/[[photo]].png">
+  </div>
+  [[/each]]
+</div>

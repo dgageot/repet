@@ -38,6 +38,6 @@ public class BasketFactory {
   }
 
   private Iterable<Developer> findDeveloper(String emails) {
-    return of(emails.split(",")).map(of(allDevelopers).uniqueIndex(dev -> dev.email)::get).notNulls();
+    return split(emails, ",").map(of(allDevelopers).uniqueIndex(dev -> dev.email)::get).notNulls();
   }
 }

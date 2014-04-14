@@ -1,15 +1,11 @@
 # DGA
 
 + [ ] Extraire 10+ profils de Hopwork
-+ [ ] Test Unitaire
 + [ ] Projet vide
 + [ ] Repo Maven
 + [ ] bouquins Java EE (Antonio) (dedicace)
-+ [ ] Categories de mots clefs
-+ [ ] Css
 + [ ] bout en bout - exercices
 + [ ] Clefs USB
-+ [ ] Restassured
 
 
 # JLO
@@ -26,7 +22,6 @@
 # Fluent-http:
 
 + [ ] LogFilterRequest uri + params
-+ [ ] http://localhost:8080/basket?emails=david@gageot.net&emails=mathilde@lemee.net
 + [ ] live reload directement dans fluent-http : https://github.com/davidB/livereload-jvm
 + [ ] Barbarywatch
 

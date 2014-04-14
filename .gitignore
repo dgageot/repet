@@ -3,3 +3,4 @@
 target/
 snapshots/
 phantomjsdriver.log
+node_modules

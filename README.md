@@ -172,12 +172,9 @@ describe 'End to end test', ->
 
 # Run test
 
-```bash
-webdriver-manager start
-```
 
 Start the application (from Maven or IDE)
 
 ```bash
-protractor protractor.conf.js
+protractor protractor.conf.coffee
 ```

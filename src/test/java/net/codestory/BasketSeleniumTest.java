@@ -26,16 +26,6 @@ public class BasketSeleniumTest extends SeleniumTest {
   }
 
   @Test
-  public void one_developer() {
-    goTo("/");
-
-    find("#clear").click();
-    find("#David .btn-success").click();
-
-    find("#basket .text-right").should().contain("1000");
-  }
-
-  @Test
   public void two_developers() {
     goTo("/");
 

@@ -315,13 +315,48 @@ Et en appelant http://localhost:8080/douglas vous obtenez :
 }
 ```
 
-# How I'm sure it works ?
+# Tests unitaires, intégrations, javascript, d'interfaces !
 
 ## Tester unitairement ses resources avec JUnit
 
 ## Tester en intégration ses resources avec RestAssured
 
 ## Tester unitairement ses controlleurs Angular avec Karma
+
+On peut tester unitairement son controleur angular.
+
+On utilise Karma, en conjonction avec Jasmine pour cela.
+Il faut que les fichiers de angular soit disponible dans le path qqpart.
+Si tu utilises les webjars, c'est le bon moment pour lancer un `bower install` dans ta console.
+
+Utilise le fichier de configuration de karma que tu trouveras sur la clé USB
+Si tu n'as pas chrome sur ta machine tu peux ouvrir le fichier de configuration et remplacer `chrome par `safari`, `firefox`... ou `ie` !
+
+le test se lance en tapant `karma start karma.conf.coffee`
+(si karma n'est pas dans ton path, tu peux le trouver dans node_modules/karma/bin/karma`)
+
+```coffee
+expect = chai.expect
+
+describe 'basket controller unit test', ->
+
+  beforeEach ->
+    module 'devoxx'
+    localStorage['emails']=''
+
+  it 'should find a basket controller', ->
+    expect(@BasketController).not.to.equal null
+
+  it 'should call the method inside a controller with emails', inject ($controller, $httpBackend) ->
+    localStorage['emails']='["foo@bar.com"]'
+    $httpBackend.expectGET('/basket?emails=foo@bar.com').respond '{"test":0,"back":0,"database":0,"front":0,"hipster":0,"sum":0}'
+
+    controller = $controller 'BasketController'
+
+    $httpBackend.flush()
+
+    expect(controller.emails).to.eql ['foo@bar.com']
+```
 
 ## Tester toute son application avec Protractor
 

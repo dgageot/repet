@@ -1,7 +1,8 @@
 # Run
 
 ```
-mvn compile exec:java
+mvn dependency:copy-dependencies
+java -jar target/web.jar
 ```
 
 # Build to deploy

@@ -28,11 +28,11 @@ public class BasketRestTest {
 
   @Test
   public void two_developers() {
-    when(basketFactory.basket("david@gageot.net,jeanlaurent@morlhon.net")).thenReturn(new Basket(4, 3, 0, 3, 5, 2000));
+    when(basketFactory.basket("david@devoxx.io,jl@devoxx.io")).thenReturn(new Basket(4, 3, 0, 3, 5, 2000));
 
     RestAssured
         .given().port(webServer.port())
-        .when().get("/basket?emails=david@gageot.net,jeanlaurent@morlhon.net").
+        .when().get("/basket?emails=david@devoxx.io,jl@devoxx.io").
         then().body("test", equalTo(4)).
         and().body("back", equalTo(3)).
         and().body("database", equalTo(0)).

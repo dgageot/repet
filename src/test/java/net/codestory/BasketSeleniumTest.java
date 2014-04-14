@@ -1,29 +1,14 @@
 package net.codestory;
 
 import static net.codestory.Server.*;
-import static org.mockito.Mockito.*;
 
 import net.codestory.http.*;
 import net.codestory.selenium.*;
 
 import org.junit.*;
 
-import com.google.inject.*;
-
 public class BasketSeleniumTest extends SeleniumTest {
-  BasketFactory basketFactory = mock(BasketFactory.class);
-
-  WebServer webServer;
-
-  @Before
-  public void startServer() {
-    webServer = new WebServer(new ServerConfiguration(new AbstractModule() {
-      @Override
-      protected void configure() {
-        bind(BasketFactory.class).toInstance(basketFactory);
-      }
-    })).startOnRandomPort();
-  }
+  WebServer webServer = new WebServer(new ServerConfiguration()).startOnRandomPort();
 
   @Override
   public String getDefaultBaseUrl() {
@@ -32,8 +17,6 @@ public class BasketSeleniumTest extends SeleniumTest {
 
   @Test
   public void two_developers() {
-    when(basketFactory.basket("david@gageot.net,mathilde@lemee.net")).thenReturn(new Basket(2, 2, 2, 2, 2, 1700));
-
     goTo("/");
 
     find("#clear").click();

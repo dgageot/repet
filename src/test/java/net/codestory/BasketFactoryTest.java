@@ -22,10 +22,10 @@ public class BasketFactoryTest {
     when(tags.count("hipster", tagsDavid)).thenReturn(3L);
 
     when(developers.findAll()).thenReturn(new Developer[]{
-        developer("david", 1000, tagsDavid)
+        developer("david@devoxx.io", 1000, tagsDavid)
     });
 
-    Basket basket = basketFactory.basket("david");
+    Basket basket = basketFactory.basket("david@devoxx.io");
 
     assertThat(basket.test).isEqualTo(2);
     assertThat(basket.back).isEqualTo(1);
@@ -53,11 +53,11 @@ public class BasketFactoryTest {
     when(tags.count("hipster", tagsJL)).thenReturn(3L);
 
     when(developers.findAll()).thenReturn(new Developer[]{
-        developer("david", 1000, tagsDavid),
-        developer("jl", 1100, tagsJL)
+        developer("david@devoxx.io", 1000, tagsDavid),
+        developer("jl@devoxx.io", 1100, tagsJL)
     });
 
-    Basket basket = basketFactory.basket("david,jl");
+    Basket basket = basketFactory.basket("david@devoxx.io,jl@devoxx.io");
 
     assertThat(basket.test).isEqualTo(4);
     assertThat(basket.back).isEqualTo(2);

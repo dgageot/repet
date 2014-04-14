@@ -319,7 +319,69 @@ Et en appelant http://localhost:8080/douglas vous obtenez :
 
 ## Tester unitairement ses resources avec JUnit
 
+Rien d'extraordinaire dans cette section.
+
+Nous utilisons des utilitaires de tests bien connus, comme assertj (un fork de fest-assert) et mockito
+
+Tu peux les ajouter facilement à ton pom en ajoutant :
+
+```xml
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>1.6.0</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <version>1.9.5</version>
+      <scope>test</scope>
+    </dependency>
+```
+
 ## Tester en intégration ses resources avec RestAssured
+
+Les tests d'intégration au niveau resource sont interessant car ils vérifient si notre application est proprement wrappé dans une resource REST.
+On va se concentrer sur les entrées/sorties http.
+
+On utilise pour cela RestAssured, qui propose une API fluent pour décrire ces tests qui sont parfois assez complexe à écrire.
+```xml
+    <dependency>
+      <groupId>com.jayway.restassured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <version>2.3.1</version>
+      <scope>test</scope>
+    </dependency>
+```
+Un test RestAssured à besoin du serveur pour tourner, mais plutot que de tout lancer dans une section dédiée du pom nous préférons les utiliser comme des tests unitaires d'un point de vue run.
+Il se trouve qu'il est parfaitement possible d'executer cela dans un test unitaire a condition que le serveur soit capable de démarrer trés rapidement.
+Il se trouve que fluent-http est trés bon dans ce domaine :
+
+
+Pour eviter les conflits en cas de parallelisations des tests, fluent-http possede une méthode `startOnRandomPort` qui permet d'être sur d'éviter les conflits de bind.
+```java
+public class BasketRestTest {
+  WebServer webServer;
+
+  @Before
+  public void startServer() {
+    webServer = new WebServer().startOnRandomPort();
+  }
+
+  @Test
+  public void two_developers() {
+
+    RestAssured
+        .given().port(webServer.port())
+        .when().get("/basket?emails=david@devoxx.io,jl@devoxx.io").
+        then().body("grade", equalTo(4)).
+        and().body("sum", equalTo(2000));
+  }
+
+}
+```
 
 ## Tester unitairement ses controlleurs Angular avec Karma
 
@@ -385,8 +447,6 @@ describe 'End to end test', ->
     expect(element(By.css('#basket .text-right')).getText()).toContain '1700'
 ```
 Protractor te permet aussi d'utiliser par exemple la fonction `By.model` qui te permet de réagir au modele angular sous-jascent : `By.model('someAngularVariableInScope')`
-
-
 
 
 

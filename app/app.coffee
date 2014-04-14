@@ -3,6 +3,7 @@ angular.module 'devoxx', ['ngAnimate']
 .controller 'BasketController', class
     constructor: (@$http)->
       @emails = JSON.parse(localStorage['emails'] || '[]')
+
       @basket = {}
       @refresh()
 

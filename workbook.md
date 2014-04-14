@@ -46,9 +46,9 @@ les sites font, il faut plutôt être sur qu'ils soient bons dans un certains no
 projets d'aujourd'hui.
 
 En 2014, il nous faut 4 talents : `Front`, `Back`, `Database`, `Test`. Pour faire chouette et parce que c'est plus
-vendeur, on veut aussi un coéficient `Hipster`.
+vendeur, on veut aussi un coefficient `Hipster`.
 
-Donc le site doit optimiser le prix (le nerf de la guerre d'après Jean-Claude, et il sait de quoi il parle: il a une bm)
+Donc le site doit optimiser le prix (le nerf de la guerre d'après Jean-Claude, et il sait de quoi il parle: il a une BM)
 mais aussi ces 5 caractéristiques.
 
 Ca pourrait ressembler à ça :
@@ -62,7 +62,7 @@ On t'a installé Frontpage et IIS, let's go ! T'as 2h.
 
 ## Démarrer le serveur
 
-1. Crées toi un répertoire tout neuf, dans lequel tu ajoute un pom qui pourrait ressembler à ça :
+1. Crées toi un répertoire tout neuf, dans lequel tu ajoute un `pom.xml` qui pourrait ressembler à ça :
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -96,7 +96,7 @@ On t'a installé Frontpage et IIS, let's go ! T'as 2h.
 ```
 
 1. Ensuite tu te crées comme un grand les répertoires de sources et de tests qui vont bien.
-(tu peux aussi utiliser ta souris, mais ca fait moins hype)
+(tu peux aussi utiliser ta souris, mais ça fait moins hype)
 
 ```bash
 mkdir -p src/{main,test}/java
@@ -123,12 +123,12 @@ Je sers une page web avec un projet java en moins de 2 minutes... si si c'est po
 ```
 
 Dans fluent-http, tout ce qui est dans le répertoire `app` est servi par défaut à la racine de ton serveur.
-Si tu y mets du html il sera servi tel quel, comme pour le js, les images etc..
-Si tu y mets du less, il sera compilé en css, du coffee en js, du markdown en html, etc...
+Si tu y mets du Html il sera servi tel quel, comme pour le Js, les images etc..
+Si tu y mets du Less, il sera compilé en Css, du Coffee en Js, du Markdown en Html, etc...
 
 1. Bon on code du java ou pas ? :
 
-  Dans src/main/java tu ajoute une classe `Server`, Celle là par exemple :
+  Dans `src/main/java` tu ajoutes une classe `Server`. Celle là par exemple :
 
 ```java
 package com.acme;
@@ -142,7 +142,7 @@ public class Server {
 }
 ```
 
-1. Execute la classe Server et pointe ton navigateur sur http://localhost:8080
+1. Exécute la classe `Server` et pointe ton navigateur sur http://localhost:8080
 Normalement, là, tu as moins envie d'utiliser weblo et tomcat, lundi au boulot.
 
 
@@ -163,7 +163,7 @@ Tu peux ajouter dans une page html le code suivant :
 [[greetings]]
 ```
 
-Sans redémarrer ton serveur, le fichier sera servi et le processing sera fait coté serveur.
+Sans redémarrer ton serveur, le fichier sera servi et le traitement sera fait coté serveur.
 
 Le langage de template ici est du Handlebars (http://handlebarsjs.com/). Tu peux donc utiliser toutes les commandes
 handlebars comme par exemple:
@@ -190,7 +190,7 @@ Tu peux les afficher avec une boucle comme ceci:
 [[/each]]
 ```
 
-### condition
+### Condition
 
 ```html
 <div class="entry">
@@ -232,7 +232,7 @@ Sinon il y a [bower](http://bower.io/). C'est plus hype mais tu dois déplacer l
 
 fluent-http expose en json vos beans par défaut.
 
-Par exemple pour retourner une persone qui pourrait être défini comme suis :
+Par exemple pour retourner une personne qui pourrait être défini comme suis :
 
 ```Java
 public class Person {
@@ -246,7 +246,7 @@ public class Person {
 }
 ```
 
-Vous pouvez facilement ajouter une resource à votre serveur http comme suis :
+Vous pouvez facilement ajouter une ressource à votre serveur http comme suis :
 
 ```Java
 public class PersonResource {
@@ -273,7 +273,7 @@ public class Server {
 }
 ```
 
-Et en appellant http://localhost:8080/douglas vous obtenez :
+Et en appelant http://localhost:8080/douglas vous obtenez :
 
 ```json
 {

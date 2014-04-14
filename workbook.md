@@ -23,17 +23,17 @@ Lundi, au boulot, vous ne verrez plus votre projet java de la même manière.
 Pour faire cet atelier, tu as besoin  :
   * d'un portable avec de la batterie pour durer 3h de coding
   * d'un binome
-  * de Logiciel :
+  * de logiciels :
     * Java 8
-    * maven 3
+    * maven 3.1
     * node.js 0.10+
     * un repo maven "chauffé"
     * d'un IDE
     * de quelques "assets" de données et graphiques
 
-Tu trouveras tout ça dans une clé USB que nous te ditribuons pendant le début de la session.
+Tu trouveras tout ça dans une clé USB que nous te distribuons au début de la session.
 
-# chasseurded€v.io
+# Recruteur.io
 
 Votre ami Jean-Claude de SupDeCo Aurillac a une idée de business de malade, Mark Zuckerberg en tremble encore : il s'agit de faire un site pour trouver des grouillots modernes (programmeurs) pour se faire une tonne de $$$ en les plaçant dans des structures qui font des projets web.
 
@@ -75,7 +75,7 @@ On t'a installé Frontpage et IIS, let's go ! T'as 2h.
       <dependency>
         <groupId>net.code-story</groupId>
         <artifactId>http</artifactId>
-        <version>1.38</version>
+        <version>1.42</version>
       </dependency>
       <dependency>
         <groupId>junit</groupId>
@@ -92,8 +92,7 @@ On t'a installé Frontpage et IIS, let's go ! T'as 2h.
 (tu peux aussi utiliser ta souris, mais ca fait moins hype)
 
   ```bash
-  mkdir -p src/main/java
-  mkdir -p src/test/java
+  mkdir -p src/{main,test}/java
   ```
 1. On est là pour faire du web. Alors allons y pour un helloworld classique ( c'est bien le classique aussi parfois).
   Tu peux creer un fichier `index.md` à la racine d'une répertoire `app` a coté de ton `pom.xml`
@@ -184,8 +183,85 @@ tu peux les afficher avec une boucle comme ceci:
 
 Il ya d'autres éléments (mais guère plus, que tu peux voir dans http://handlebarsjs.com/)
 
+### Ajouter bootstrap
+
+Pour ajouter bootstrap tu peux utiliser les webjars
+
+tu ajoutes à ton pom
+
+```xml
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>bootstrap</artifactId>
+      <version>3.1.1</version>
+    </dependency>
+```
+Tu peux acceder en utilisant le chemin `/webjars/bootstrap/3.1.1/css/bootstrap.css` dans une balise styles.
+Si tu utilise le YAML Front Matter tu peux carrement le rajouter dans celui ci :
+```YAML
+---
+title: Chasseur de dev.io
+styles: /webjars/bootstrap/3.1.1/css/bootstrap.css
+---
+```
+Tu peux agir de la même manière avec toutes tes dépendances front.
+
+Sinon y'a bower c'est plus hype mais tu dois déplacer les fichiers à la main.
+
 # Server Side Stuff don't suck
 
+fluent-http expose en json vos beans par défaut.
+Par exemple pour retourner une persone qui pourrait être défini comme suis :
+```Java
+public class Person {
+  public String name;
+  public int age
+
+  public Person(String name, int age) {
+    this.name = name;
+    this.age = age;
+  }
+}
+```
+
+Vous pouvez facilement ajouter une resource à votre serveur http comme suis :
+```Java
+public class PersonResource {
+
+  @Get("/douglas")
+  public Person getPerson() {
+    return new Person("Scott Adams",42);
+  }
+}
+```
+Vous le brancher dans vos routes :
+```Java
+package com.acme;
+
+import net.codestory.http.*;
+
+public class Server {
+
+  public static void main(String[] args) {
+    new WebServer(routes -> routes.add(PersonResource.class).start();
+  }
+}
+```
+Et en appellant http://localhost:8080/douglas vous obtenez :
+```json
+{
+  "name":"Scott Adams",
+  "age":42
+}
+```
 # How I'm sure it works ?
+
+## Tester unitairement ses resources avec JUnit
+
+## Tester en intégration ses resources avec RestAssured
+
+## Tester unitairement ses controlleurs Angular avec Karma
+
+## Tester toute son application avec Protractor
 
 # You want more ?

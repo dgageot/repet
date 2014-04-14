@@ -33,7 +33,7 @@ public static void main(String[] args) {
 ```yaml
 ---
 layout: default
-title: Chasseur de dev.io
+title: Recruteur.io
 styles: [/webjars/bootstrap/3.1.1/css/bootstrap.css]
 developers:
  - name: David Gageot

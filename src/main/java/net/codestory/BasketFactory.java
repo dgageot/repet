@@ -2,10 +2,13 @@ package net.codestory;
 
 import static net.codestory.http.misc.Fluent.*;
 
+import javax.inject.*;
+
 public class BasketFactory {
   private final Developers developers;
   private final Tags tags;
 
+  @Inject
   public BasketFactory(Developers developers, Tags tags) {
     this.developers = developers;
     this.tags = tags;

@@ -230,6 +230,39 @@ Sinon il y a [bower](http://bower.io/). C'est plus hype mais tu dois déplacer l
 
 # Server Side Stuff don't suck
 
+## Angular
+
+Tu peux écrire tes controlleurs angular en coffee, avec une syntaxe de classe, cela te permet d'isoler facilement les éléments.
+par exemple :
+
+```coffee
+angular.module 'devoxx', []
+
+.controller 'MyController', class
+    constructor: (@$http) ->
+      @info = "Hello World"
+      @basket = {}
+
+    search: ->
+      @$http.get("/basket").success (data) =>
+        @basket = data
+
+```
+Il te suffit ensuite de coller un entete ng-app dans le yaml front matter comme cela :
+
+```yaml
+---
+title: Hello world angular
+ng-app:devoxx
+---
+<div ng-controller="MyController as controller">
+  {{controller.info}}
+  <a href="" ng-click="controller.search()">search</a>
+</div>
+```
+
+
+## Service REST Simple
 fluent-http expose en json vos beans par défaut.
 
 Par exemple pour retourner une personne qui pourrait être défini comme suis :

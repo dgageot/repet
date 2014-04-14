@@ -360,4 +360,34 @@ describe 'basket controller unit test', ->
 
 ## Tester toute son application avec Protractor
 
+Protractor permet de tester l'application dans sa globalité, avec une surcouche anciennement appelé ng-scenario qui permet d'acceder directement
+au scope angular si besoin.
+
+Protractor a besoin de selenium, il faut que tu l'installes en tapant la commande suivante : `webdriver-manager -update`
+Si tu ne trouve pas webdriver-manager dans ton path, tu le trouveras ici : `node_modules/protractor/bin/webdriver-manager`
+
+N'oublie pas de lancer ton serveur avant d'executer ce test
+
+Il se lance en executant la commande `protractor protractor.conf.coffee`
+
+si protractor n'est pas dans ton path, tu le trouveras dans  `node_modules/protractor/bin/protractor`)
+
+```coffee
+describe 'End to end test', ->
+  beforeEach ->
+    browser.get '/'
+
+  it 'should update the basket with two developers', ->
+    element(By.css('#clear')).click()
+    element(By.css('#David .btn-success')).click()
+    element(By.css('#Mathilde .btn-success')).click()
+
+    expect(element(By.css('#basket .text-right')).getText()).toContain '1700'
+```
+Protractor te permet aussi d'utiliser par exemple la fonction `By.model` qui te permet de réagir au modele angular sous-jascent : `By.model('someAngularVariableInScope')`
+
+
+
+
+
 # You want more ?

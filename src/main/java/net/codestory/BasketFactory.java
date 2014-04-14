@@ -2,42 +2,31 @@ package net.codestory;
 
 import static net.codestory.http.misc.Fluent.*;
 
-import java.util.*;
-
-import net.codestory.http.convert.*;
-import net.codestory.http.templating.*;
-
 public class BasketFactory {
-  private final Developer[] allDevelopers;
-  private final Map<String, List<String>> allTags;
+  private final Developers developers;
+  private final Tags tags;
 
-  public BasketFactory() {
-    this.allDevelopers = TypeConvert.convertValue(Site.get().getData().get("developers"), Developer[].class);
-    this.allTags = (Map<String, List<String>>) Site.get().getData().get("tags");
+  public BasketFactory(Developers developers, Tags tags) {
+    this.developers = developers;
+    this.tags = tags;
   }
 
   public Basket basket(String emails) {
     Basket basket = new Basket();
 
     for (Developer developer : findDeveloper(emails)) {
-      String[] tags = developer.tags;
-
-      basket.test += count("test", tags);
-      basket.back += count("back", tags);
-      basket.database += count("database", tags);
-      basket.front += count("front", tags);
-      basket.hipster += count("hipster", tags);
+      basket.test += tags.count("test", developer.tags);
+      basket.back += tags.count("back", developer.tags);
+      basket.database += tags.count("database", developer.tags);
+      basket.front += tags.count("front", developer.tags);
+      basket.hipster += tags.count("hipster", developer.tags);
       basket.sum += developer.price;
     }
 
     return basket;
   }
 
-  private long count(String component, String[] tags) {
-    return of(tags).count(of(allTags.get(component)).toSet()::contains);
-  }
-
   private Iterable<Developer> findDeveloper(String emails) {
-    return split(emails, ",").map(of(allDevelopers).uniqueIndex(dev -> dev.email)::get).notNulls();
+    return split(emails, ",").map(of(developers.findAll()).uniqueIndex(dev -> dev.email)::get).notNulls();
   }
 }

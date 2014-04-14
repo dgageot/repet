@@ -11,7 +11,7 @@ public class Server {
   public static class ServerConfiguration implements Configuration {
     @Override
     public void configure(Routes routes) {
-      routes.get("/basket?emails=:emails", (context, emails) -> new BasketFactory().basket(emails));
+      routes.get("/basket?emails=:emails", (context, emails) -> context.getBean(BasketFactory.class).basket(emails));
     }
   }
 }

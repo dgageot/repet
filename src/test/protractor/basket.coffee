@@ -1,7 +1,16 @@
-describe 'E2E: Acceptance Testing', ->
+describe 'End to end test', ->
   beforeEach ->
     browser.get '/'
 
-  it 'should have a working welcome page', ->
-    expect($('h1').getText()).toEqual 'Hello World!'
-    expect(element.all(By.css('li')).count()).toBe 2
+  it 'should update the basket with one developer', ->
+    find('#clear').click()
+    find('#David .btn-success').click()
+
+    expect(find('#basket .text-right').getText()).toContain '1000'
+
+  it 'should update the basket with two developers', ->
+    find('#clear').click()
+    find('#David .btn-success').click()
+    find('#Mathilde .btn-success').click()
+
+    expect(find('#basket .text-right').getText()).toContain '1700'

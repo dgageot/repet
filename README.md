@@ -141,7 +141,43 @@ TypeConvert.convertValue(Site.get().getData().get("developers"), Developer[].cla
       ng-repeat="i in [1,2,3,4,5]"></span>
 ```
 
+# Prepare machine for protractor
+
+```bash
+npm install
+webdriver-manager update --standalone
+
+```
+
 # Protractor test
 
-``` coffee
+```coffee
+require('coffee-script').register()
+
+exports.config =
+  specs: ['src/test/protractor/**/*.coffee']
+  baseUrl: 'http://localhost:8080'
+  onPrepare: ->
+    global.By = global.by
+```
+
+```coffee
+describe 'End to end test', ->
+  it 'should update the basket with one developer', ->
+    browser.get '/'
+    element(By.css('#clear')).click()
+    element(By.css('#David .btn-success')).click()
+    expect(element(By.css('#basket .text-right')).getText()).toContain '1000'
+```
+
+# Run test
+
+```bash
+webdriver-manager start
+```
+
+Start the application (from Maven or IDE)
+
+```bash
+protractor protractor.conf.js
 ```

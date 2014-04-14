@@ -11,12 +11,12 @@ import org.junit.*;
 import com.google.inject.*;
 
 public class BasketSeleniumTest extends SeleniumTest {
-  static BasketFactory basketFactory = mock(BasketFactory.class);
+  BasketFactory basketFactory = mock(BasketFactory.class);
 
-  static WebServer webServer;
+  WebServer webServer;
 
-  @BeforeClass
-  public static void startServer() {
+  @Before
+  public void startServer() {
     webServer = new WebServer(new ServerConfiguration(new AbstractModule() {
       @Override
       protected void configure() {

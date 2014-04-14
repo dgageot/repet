@@ -3,4 +3,5 @@
 target/
 snapshots/
 phantomjsdriver.log
-node_modules
+node_modules/
+bower_components/

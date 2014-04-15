@@ -42,7 +42,7 @@ plaçant dans des structures qui font des projets web.
 Le truc c'est que visiblement les programmeurs ont des talents différents et que pour faire une bonne équipe, il faut
 mixer ces talents.
 Entre recherche de mots clés (ex: cherche stagiaire, 7 ans d'expérience en j2ee, vba et golo est un plus), ce que tous
-les sites font, il faut plutôt être sur qu'ils soient bons dans un certains nombre de caractéristiques utiles aux
+les sites font, il faut plutôt être sur qu'ils soient bons dans un certain nombre de caractéristiques utiles aux
 projets d'aujourd'hui.
 
 En 2014, il nous faut 4 talents : `Front`, `Back`, `Database`, `Test`. Pour faire chouette et parce que c'est plus
@@ -83,7 +83,7 @@ On t'a installé Frontpage et IIS, let's go ! T'as 2h.
     <dependency>
       <groupId>net.code-story</groupId>
       <artifactId>http</artifactId>
-      <version>1.42</version>
+      <version>1.44</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -96,14 +96,14 @@ On t'a installé Frontpage et IIS, let's go ! T'as 2h.
 ```
 
 1. Ensuite tu te crées comme un grand les répertoires de sources et de tests qui vont bien.
-(tu peux aussi utiliser ta souris, mais ça fait moins hype)
+(Tu peux aussi utiliser ta souris, mais ça fait moins hype)
 
 ```bash
 mkdir -p src/{main,test}/java
 ```
 
 1. On est là pour faire du web. Alors allons-y pour un Hello World classique (c'est bien le classique aussi parfois).
-  Tu peux créer un fichier `index.md` (et oui .md. Le classique n'a pas duré longtemps) à la racine d'une répertoire
+  Tu peux créer un fichier `index.md` (et oui .md, le classique n'a pas duré longtemps...) à la racine d'une répertoire
   `app` a coté de ton `pom.xml`
 
 ```bash
@@ -248,7 +248,8 @@ angular.module 'devoxx', []
         @basket = data
 
 ```
-Il te suffit ensuite de coller un entete ng-app dans le yaml front matter comme cela :
+
+Il te suffit ensuite de coller un entête ng-app dans le yaml front matter comme cela :
 
 ```yaml
 ---
@@ -261,11 +262,11 @@ ng-app:devoxx
 </div>
 ```
 
-
 ## Service REST Simple
-fluent-http expose en json vos beans par défaut.
 
-Par exemple pour retourner une personne qui pourrait être défini comme suis :
+Fluent-http expose vos en json beans par défaut.
+
+Par exemple pour retourner une personne qui pourrait être défini comme cela :
 
 ```Java
 public class Person {
@@ -279,7 +280,7 @@ public class Person {
 }
 ```
 
-Vous pouvez facilement ajouter une ressource à votre serveur http comme suis :
+Vous pouvez facilement ajouter une ressource à votre serveur http comme cela :
 
 ```Java
 public class PersonResource {
@@ -291,7 +292,7 @@ public class PersonResource {
 }
 ```
 
-Vous le brancher dans vos routes :
+Vous le branchez dans vos routes :
 
 ```Java
 package com.acme;
@@ -343,10 +344,11 @@ Tu peux les ajouter facilement à ton pom en ajoutant :
 
 ## Tester en intégration ses resources avec RestAssured
 
-Les tests d'intégration au niveau resource sont interessant car ils vérifient si notre application est proprement wrappé dans une resource REST.
+Les tests d'intégration au niveau resource sont interessants car ils vérifient si notre application est proprement wrappée dans une resource REST.
 On va se concentrer sur les entrées/sorties http.
 
-On utilise pour cela RestAssured, qui propose une API fluent pour décrire ces tests qui sont parfois assez complexe à écrire.
+On utilise pour cela RestAssured, qui propose une API fluent pour décrire ces tests qui sont parfois assez complexes à écrire.
+
 ```xml
     <dependency>
       <groupId>com.jayway.restassured</groupId>
@@ -355,12 +357,14 @@ On utilise pour cela RestAssured, qui propose une API fluent pour décrire ces t
       <scope>test</scope>
     </dependency>
 ```
-Un test RestAssured à besoin du serveur pour tourner, mais plutot que de tout lancer dans une section dédiée du pom nous préférons les utiliser comme des tests unitaires d'un point de vue run.
-Il se trouve qu'il est parfaitement possible d'executer cela dans un test unitaire a condition que le serveur soit capable de démarrer trés rapidement.
-Il se trouve que fluent-http est trés bon dans ce domaine :
+
+Un test RestAssured à besoin du serveur pour tourner, mais plutôt que de les lancer avec les tests d'intégration, avec faisafe, nous préférons les utiliser comme des tests unitaires.
+Il est parfaitement possible d'executer cela dans un test unitaire a condition que le serveur soit capable de démarrer trés rapidement.
+Il se trouve que fluent-http est trés bon dans ce domaine.
 
 
-Pour eviter les conflits en cas de parallelisations des tests, fluent-http possede une méthode `startOnRandomPort` qui permet d'être sur d'éviter les conflits de bind.
+Pour éviter les conflits en cas de parallelisations des tests, fluent-http possède une méthode `startOnRandomPort` qui permet d'être sûr d'éviter les conflits de bind.
+
 ```java
 public class BasketRestTest {
   WebServer webServer;
@@ -385,16 +389,16 @@ public class BasketRestTest {
 
 ## Tester unitairement ses controlleurs Angular avec Karma
 
-On peut tester unitairement son controleur angular.
+On peut tester unitairement son controleur Angular.
 
 On utilise Karma, en conjonction avec Jasmine pour cela.
-Il faut que les fichiers de angular soit disponible dans le path qqpart.
+Il faut que les fichiers de angular soient disponibles dans le path.
 Si tu utilises les webjars, c'est le bon moment pour lancer un `bower install` dans ta console.
 
 Utilise le fichier de configuration de karma que tu trouveras sur la clé USB
-Si tu n'as pas chrome sur ta machine tu peux ouvrir le fichier de configuration et remplacer `chrome par `safari`, `firefox`... ou `ie` !
+Si tu n'as pas Chrome sur ta machine tu peux ouvrir le fichier de configuration et remplacer `chrome` par `safari`, `firefox`... ou `ie` !
 
-le test se lance en tapant `karma start karma.conf.coffee`
+Le test se lance en tapant `karma start karma.conf.coffee`
 (si karma n'est pas dans ton path, tu peux le trouver dans node_modules/karma/bin/karma`)
 
 ```coffee
@@ -411,7 +415,8 @@ describe 'basket controller unit test', ->
 
   it 'should call the method inside a controller with emails', inject ($controller, $httpBackend) ->
     localStorage['emails']='["foo@bar.com"]'
-    $httpBackend.expectGET('/basket?emails=foo@bar.com').respond '{"test":0,"back":0,"database":0,"front":0,"hipster":0,"sum":0}'
+    $httpBackend.expectGET('/basket?emails=foo@bar.com').respond
+      '{"test":0,"back":0,"database":0,"front":0,"hipster":0,"sum":0}'
 
     controller = $controller 'BasketController'
 
@@ -420,19 +425,19 @@ describe 'basket controller unit test', ->
     expect(controller.emails).to.eql ['foo@bar.com']
 ```
 
-## Tester toute son application avec Protractor
+## Tester son application avec Protractor
 
-Protractor permet de tester l'application dans sa globalité, avec une surcouche anciennement appelé ng-scenario qui permet d'acceder directement
-au scope angular si besoin.
+Protractor permet de tester l'application dans sa globalité, avec une surcouche anciennement appelée `ng-scenario` qui permet d'accéder directement
+au scope angular, si besoin.
 
-Protractor a besoin de selenium, il faut que tu l'installes en tapant la commande suivante : `webdriver-manager -update`
-Si tu ne trouve pas webdriver-manager dans ton path, tu le trouveras ici : `node_modules/protractor/bin/webdriver-manager`
+Protractor a besoin de Selenium, il faut que tu l'installes en tapant la commande suivante : `webdriver-manager -update`
+Si tu ne trouves pas webdriver-manager dans ton path, tu le trouveras ici : `node_modules/protractor/bin/webdriver-manager`
 
-N'oublie pas de lancer ton serveur avant d'executer ce test
+N'oublie pas de lancer ton serveur avant d'executer ce test.
 
 Il se lance en executant la commande `protractor protractor.conf.coffee`
 
-si protractor n'est pas dans ton path, tu le trouveras dans  `node_modules/protractor/bin/protractor`)
+Si protractor n'est pas dans ton path, tu le trouveras dans `node_modules/protractor/bin/protractor`)
 
 ```coffee
 describe 'End to end test', ->
@@ -446,16 +451,19 @@ describe 'End to end test', ->
 
     expect(element(By.css('#basket .text-right')).getText()).toContain '1700'
 ```
-Protractor te permet aussi d'utiliser par exemple la fonction `By.model` qui te permet de réagir au modele angular sous-jascent : `By.model('someAngularVariableInScope')`
-Il y a aussi la fonction `By.binding` qui peut être utilisé par exemple avec : `By.binding('{{someVariableInScope}}')`
 
-Attention toutes éléments est une promesses pour faire un simple `console.log` il faut faire comme suis :
+Protractor te permet aussi d'utiliser la fonction `By.model` qui te sert à réagir au modèle angular sous-jascent : `By.model('someAngularVariableInScope')`
+Il y a aussi la fonction `By.binding` qui peut être utilisée par exemple avec : `By.binding('{{someVariableInScope}}')`
+
+Attention tout élément est une promesse. Ppour faire un simple `console.log` il faut faire comme cela :
+
 ```coffee
   element(By.id('view-container')).getText().then (text) ->
     console.log text
 ```
 
-idem sur des tableaux :
+Idem avec des tableaux :
+
 ```coffee
   it 'should find the right number of front skill for dgageot', ->
     element(By.css('#clear').click()

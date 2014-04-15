@@ -447,7 +447,21 @@ describe 'End to end test', ->
     expect(element(By.css('#basket .text-right')).getText()).toContain '1700'
 ```
 Protractor te permet aussi d'utiliser par exemple la fonction `By.model` qui te permet de réagir au modele angular sous-jascent : `By.model('someAngularVariableInScope')`
+Il y a aussi la fonction `By.binding` qui peut être utilisé par exemple avec : `By.binding('{{someVariableInScope}}')`
 
+Attention toutes éléments est une promesses pour faire un simple `console.log` il faut faire comme suis :
+```coffee
+  element(By.id('view-container')).getText().then (text) ->
+    console.log text
+```
 
+idem sur des tableaux :
+```coffee
+  it 'should find the right number of front skill for dgageot', ->
+    element(By.css('#clear').click()
+    element(By.css('#David .btn-success').click()
+    element.all(By.css('.box.front:not(.ng-hide)')).then (array) ->
+      expect(array.length).toEqual 2
+``
 
 # You want more ?

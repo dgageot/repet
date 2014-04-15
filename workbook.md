@@ -470,7 +470,7 @@ Idem avec des tableaux :
     element(By.css('#David .btn-success').click()
     element.all(By.css('.box.front:not(.ng-hide)')).then (array) ->
       expect(array.length).toEqual 2
-``
+```
 
 # Vous voulez aller plus loin ?
 

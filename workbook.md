@@ -496,6 +496,6 @@ A partir de 10 inscrits, le tarif passe à 900 euros pour tout le monde, de mani
 A partir de 20 inscrits, le tarif passe à 800 euros.
 A partir de 30 inscrits, le tarif passe à 700 euros.
 
-On a hate de vous recevoir, cela vous interessse, laissez nous vos coordonées par email à training@morlhon.net 
+On a hate de vous recevoir, si vous êtes interessé, laissez nous vos coordonées par email à training@morlhon.net 
 
 -- David & Jean-Laurent

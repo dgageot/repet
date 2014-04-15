@@ -43,6 +43,22 @@ public class Should {
     );
   }
 
+  public void haveSize(int count) {
+    verify(
+        "has " + count + " items",
+        () -> findMultiple(),
+        elements -> elements.size() == count
+    );
+  }
+
+  public void beEmpty() {
+    verify(
+        "is empty",
+        () -> findMultiple(),
+        elements -> elements.isEmpty()
+    );
+  }
+
   private <T> void verify(String message, Supplier<T> target, Predicate<T> predicate) {
     String verification = "verify that " + selector + " " + message;
 

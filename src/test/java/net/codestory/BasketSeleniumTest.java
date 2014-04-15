@@ -25,4 +25,18 @@ public class BasketSeleniumTest extends SeleniumTest {
 
     find("#basket .text-right").should().contain("1700");
   }
+
+  @Test
+  public void one_developer() {
+    goTo("/");
+
+    find("#clear").click();
+    find("#David .btn-success").click();
+
+    find("#basket .box.test:not(.ng-hide)").should().haveSize(1);
+    find("#basket .box.back:not(.ng-hide)").should().haveSize(1);
+    find("#basket .box.database:not(.ng-hide)").should().beEmpty();
+    find("#basket .box.front:not(.ng-hide)").should().haveSize(2);
+    find("#basket .box.hipster:not(.ng-hide)").should().haveSize(1);
+  }
 }

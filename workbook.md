@@ -472,4 +472,30 @@ Idem avec des tableaux :
       expect(array.length).toEqual 2
 ``
 
-# You want more ?
+# Vous voulez aller plus loin ?
+
+## Application Web Moderne en Java - Le Training
+
+Nous vous proposons une formation originale de 2 jours sur le développement d'application Web en Java et html5. Présentée par David Gageot (Java Champion, Google Developer Expert) et Jean-Laurent de Morlhon (Software Craftsmanship), une formation unique alliant technique et pragmatisme. 80% de pratique, 20% de théorie.
+
+ - Programmez des applications Web utra-rapides, en Java et HTML5. Jetty, Fluent-http, spring-boot...
+ - Tirez profit des dernières technologies front-end. AngularJs, Less, CoffeeScript, Bower...
+ - Développez en toute confiance avec des tests unitaires Java et Javascript, des tests d'UI, des tests d'intégration. Karma, Protractor, JUnit, Infinitest...
+ - Tirez profit du Cloud pour le déploiement. Google App Engine, AWS, push to deploy...
+ - Optimisez une application web pour la performance. Caching, minification, proxy Page Speed
+ - Utilisez la puissance des bases NoSql. Mongo, Google Cloud Datastore...
+ - Tirer profit de Java 8
+ - N'ayez plus peur de déployer le vendredi
+ - Venez partager votre expérience avec un groupe de 30 personnes et 2 formateurs de haut niveau
+ - Une formation vraiment innovante sur le fond et sur la forme
+ - Des conseils et des outils actionnables dès le lundi !
+
+2 jours, 1000€ HT, Paris intra-muros (eligible au DIF)
+
+A partir de 10 inscrits, le tarif passe à 900 euros pour tout le monde, de manière rétroactive.
+A partir de 20 inscrits, le tarif passe à 800 euros.
+A partir de 30 inscrits, le tarif passe à 700 euros.
+
+On a hate de vous recevoir
+
+-- David & Jean-Laurent

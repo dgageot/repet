@@ -490,12 +490,12 @@ Nous vous proposons une formation originale de 2 jours sur le développement d'a
  - Une formation vraiment innovante sur le fond et sur la forme
  - Des conseils et des outils actionnables dès le lundi !
 
-2 jours, 1000€ HT, Paris intra-muros (eligible au DIF)
+2 jours, 1000€ HT, Paris intra-muros (eligible au DIF), 6-7 Octobre 2014
 
 A partir de 10 inscrits, le tarif passe à 900 euros pour tout le monde, de manière rétroactive.
 A partir de 20 inscrits, le tarif passe à 800 euros.
 A partir de 30 inscrits, le tarif passe à 700 euros.
 
-On a hate de vous recevoir
+On a hate de vous recevoir, cela vous interessse, laissez nous vos coordonées par email à training@morlhon.net 
 
 -- David & Jean-Laurent

@@ -33,7 +33,10 @@ public class BasketRestTest {
     RestAssured
         .given().port(webServer.port())
         .when().get("/basket?emails=david@devoxx.io,jl@devoxx.io").
-        then().body("test", equalTo(4)).
+        then()
+        .contentType("application/json")
+        .statusCode(200)
+        .body("test", equalTo(4)).
         and().body("back", equalTo(3)).
         and().body("database", equalTo(0)).
         and().body("front", equalTo(3)).

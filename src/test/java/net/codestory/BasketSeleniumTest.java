@@ -15,28 +15,29 @@ public class BasketSeleniumTest extends SeleniumTest {
     return "http://localhost:" + webServer.port();
   }
 
+  @Before
+  public void goToIndex() {
+    goTo("/");
+  }
+
   @Test
   public void two_developers() {
-    goTo("/");
-
     find("#clear").click();
-    find("#David .btn-success").click();
-    find("#Mathilde .btn-success").click();
+    find("#David .add").click();
+    find("#Mathilde .add").click();
 
-    find("#basket .text-right").should().contain("1700");
+    find("#basket .price").should().contain("1700");
   }
 
   @Test
   public void one_developer() {
-    goTo("/");
-
     find("#clear").click();
-    find("#David .btn-success").click();
+    find("#David .add").click();
 
-    find("#basket .box.test:not(.ng-hide)").should().haveSize(1);
-    find("#basket .box.back:not(.ng-hide)").should().haveSize(1);
-    find("#basket .box.database:not(.ng-hide)").should().beEmpty();
-    find("#basket .box.front:not(.ng-hide)").should().haveSize(2);
-    find("#basket .box.hipster:not(.ng-hide)").should().haveSize(1);
+    find("#basket .test:not(.ng-hide)").should().haveSize(1);
+    find("#basket .back:not(.ng-hide)").should().haveSize(1);
+    find("#basket .database:not(.ng-hide)").should().beEmpty();
+    find("#basket .front:not(.ng-hide)").should().haveSize(2);
+    find("#basket .hipster:not(.ng-hide)").should().haveSize(1);
   }
 }

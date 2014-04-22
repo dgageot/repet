@@ -38,7 +38,7 @@ ng-app: devoxx
           <li>
             <hr/>
           </li>
-          <li class="text-right">
+          <li class="text-right price">
             {{basket.basket.sum}}€ / jour
           </li>
         </ul>
@@ -66,9 +66,9 @@ ng-app: devoxx
       <img src="images/[[photo]].png">
 
       <div class="buttons">
-        <a ng-hide="basket.showRemove('[[email]]')" class="btn btn-success" href=""
+        <a ng-hide="basket.showRemove('[[email]]')" class="btn btn-success add" href=""
            ng-click="basket.add('[[email]]')">Chasser !</a>
-        <a ng-show="basket.showRemove('[[email]]')" class="btn btn-danger" href=""
+        <a ng-show="basket.showRemove('[[email]]')" class="btn btn-danger remove" href=""
            ng-click="basket.remove('[[email]]')">Virer !</a>
       </div>
     </div>

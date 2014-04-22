@@ -1,7 +1,5 @@
 package net.codestory;
 
-import static com.google.inject.Guice.*;
-
 import net.codestory.http.*;
 import net.codestory.http.injection.*;
 import net.codestory.http.routes.*;
@@ -13,18 +11,14 @@ public class Server {
     new WebServer(new ServerConfiguration()).start();
   }
 
-  public static class ServerConfiguration implements Configuration {
-    private final Injector injector;
-
+  public static class ServerConfiguration extends AbstractGuiceConfiguration {
     public ServerConfiguration(Module... modules) {
-      this.injector = createInjector(modules);
+      super(modules);
     }
 
     @Override
-    public void configure(Routes routes) {
-      routes
-          .setIocAdapter(new GuiceAdapter(injector))
-          .get("/basket?emails=:emails", (context, emails) -> context.getBean(BasketFactory.class).basket(emails));
+    protected void configure(Routes routes, Injector injector) {
+      routes.add(BasketResource.class);
     }
   }
 }

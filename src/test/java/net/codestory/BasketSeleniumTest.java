@@ -3,7 +3,7 @@ package net.codestory;
 import static net.codestory.Server.*;
 
 import net.codestory.http.*;
-import net.codestory.selenium.*;
+import net.codestory.simplelenium.*;
 
 import org.junit.*;
 

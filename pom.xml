@@ -41,7 +41,7 @@
     <dependency>
       <groupId>net.code-story</groupId>
       <artifactId>http</artifactId>
-      <version>1.43</version>
+      <version>1.47-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.webjars</groupId>
@@ -89,21 +89,9 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>com.github.detro.ghostdriver</groupId>
-      <artifactId>phantomjsdriver</artifactId>
-      <version>1.1.0</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.json</groupId>
-      <artifactId>json</artifactId>
-      <version>20140107</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.httpcomponents</groupId>
-      <artifactId>httpclient</artifactId>
-      <version>4.3.3</version>
+      <groupId>net.code-story</groupId>
+      <artifactId>simplelemium</artifactId>
+      <version>1.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

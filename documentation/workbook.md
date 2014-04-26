@@ -2,14 +2,15 @@
 ## The CodeStory Way
 by David Gageot & Jean-Laurent de Morlhon
 
-Devoxx Hand's on Labs
 
-Louis Armstrong CD
+MIX-IT Hand's on Labs
 
-13:30 - 16:30
+Salle Nonaka
+
+de 14H50 à 16H50
 
 ## Abstract
-Venez participer à un Hand's On Lab de 3 heures. L'objectif est simple : apprendre à développer une application web moderne en Java. Rapidement, de manière pragmatique et en toute confiance.
+Venez participer à un Hand's On Lab de 2-3 heures. L'objectif est simple : apprendre à développer une application web moderne en Java. Rapidement, de manière pragmatique et en toute confiance.
 
 Avec l'assistance et les démos live de David Gageot et Jean-Laurent de Morlhon.
 
@@ -115,6 +116,7 @@ Ensuite tu édites `index.md` (md c'est pour markdown mais tu le sais déjà, sa
 début, ça s'appelle du YAML Front Matter) et tu colles dedans ça par exemple :
 
 ```Markdown
+---
 title:hello devoxx
 ---
 # Hello Devoxx

@@ -24,7 +24,7 @@ module.exports = (config) ->
     colors: true
     logLevel: config.LOG_DEBUG
 
-    browsers: ['Chrome']
+    browsers: ['ChromeCanary','Chrome','Safari','Firefox']
     captureTimeout: 60000
 
     autoWatch: true

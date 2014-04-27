@@ -14,6 +14,8 @@ describe 'basket controller unit test', ->
 
     controller = $controller 'BasketController'
 
+    console.log 'woot !'
+
     $httpBackend.flush()
 
     expect(controller.emails).to.eql []

@@ -42,7 +42,7 @@
    * Test unit de controlleur
    * Test e2e du panier
 
- 
+
 
 
 	* Rendre une page dynamique coté serveur

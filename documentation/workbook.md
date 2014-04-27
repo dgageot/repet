@@ -70,7 +70,7 @@ On t'a installé Frontpage et IIS, let's go ! T'as 2h.
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>net.devoxx</groupId>
+  <groupId>net.mix-it</groupId>
   <artifactId>recruteurio</artifactId>
   <version>1.0-SNAPSHOT</version>
 
@@ -84,7 +84,7 @@ On t'a installé Frontpage et IIS, let's go ! T'as 2h.
     <dependency>
       <groupId>net.code-story</groupId>
       <artifactId>http</artifactId>
-      <version>1.44</version>
+      <version>1.47</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -117,9 +117,9 @@ début, ça s'appelle du YAML Front Matter) et tu colles dedans ça par exemple 
 
 ```Markdown
 ---
-title:hello devoxx
+title: hello mix-it
 ---
-# Hello Devoxx
+# Hello mix-it
 
 Je sers une page web avec un projet java en moins de 2 minutes... si si c'est possible
 ```
@@ -150,20 +150,16 @@ Normalement, là, tu as moins envie d'utiliser weblo et tomcat, lundi au boulot.
 
 ## Des moustaches coté serveur avec Handlebars
 
-Le repertoire `app/_data` peut contenir des fichiers json ou yaml qui sont directement accessible coté serveur.
+ 1. Tu peux définir tes propres variables dans le YAML front matter
 
-1. Crées un fichier `hello.json` dans `app/_data` qui peut contenir les choses suivantes :
-
-```json
-{"greetings":"Hello World"}
-```
-
-Tu peux ajouter dans une page html le code suivant :
-
-```html
-<h1>Exemple de fichier de données</h1>
-[[greetings]]
-```
+ ```Markdown
+ ---
+ title: hello mix-it
+ conference: mix-it
+ ---
+ # Hello mix-it
+Hello [[conference]] !
+ ```
 
 Sans redémarrer ton serveur, le fichier sera servi et le traitement sera fait coté serveur.
 
@@ -174,15 +170,12 @@ handlebars comme par exemple:
 
 Avec une liste de personne comme cela :
 
-```json
-{
-  "people": [
-    {"firstName": "Yehuda", "lastName": "Katz", "author":true},
-    {"firstName": "Carl", "lastName": "Lerche","author":false},
-    {"firstName": "Alan", "lastName": "Johnson","author":true}
-  ]
-}
-```
+ ```yaml
+ coders:
+  - firstName: Jean-Laurent, lastName: de Morlhon
+  - firstName: David, lastName: Gageot
+ ```
+ (c'est comme ça qu'en Yaml on fait un tableau, on pense aussi que c'est moche, mais c'est comme ça)
 
 Tu peux les afficher avec une boucle comme ceci:
 
@@ -230,6 +223,24 @@ Tu peux agir de la même manière avec toutes tes dépendances front.
 
 Sinon il y a [bower](http://bower.io/). C'est plus hype mais tu dois déplacer les fichiers à la main.
 
+### Fichiers de data externes (optionel)
+
+/!\ à faire que si t'es une rock star, y'a plein de truc bien marrant aprés et ca serait dommage que tu les rates pour ça, maintenant si la génération statique de site te botte, fonce.
+
+Le repertoire `app/_data` peut contenir des fichiers json ou yaml qui sont directement accessible coté serveur.
+Si tu creer un fichier hello.json dans `app/_data` comme suis :
+```json
+{"greetings":"Hello World"}
+```
+Tu peux ajouter dans une page html le code suivant :
+
+```html
+<h1>Exemple de fichier de données</h1>
+[[site.data.hello.greetings]]
+```
+Et *blam* du templating coté serveur à base de fichier, ca ressemble dangereseuement à Jekyll, c'est normal, c'est même copié de là ;)
+
+
 # Server Side Stuff don't suck
 
 ## Angular
@@ -238,7 +249,7 @@ Tu peux écrire tes controlleurs angular en coffee, avec une syntaxe de classe, 
 par exemple :
 
 ```coffee
-angular.module 'devoxx', []
+angular.module 'mix-it', []
 
 .controller 'MyController', class
     constructor: (@$http) ->
@@ -256,7 +267,7 @@ Il te suffit ensuite de coller un entête ng-app dans le yaml front matter comme
 ```yaml
 ---
 title: Hello world angular
-ng-app:devoxx
+ng-app:mix-it
 ---
 <div ng-controller="MyController as controller">
   {{controller.info}}
@@ -381,7 +392,7 @@ public class BasketRestTest {
 
     RestAssured
         .given().port(webServer.port())
-        .when().get("/basket?emails=david@devoxx.io,jl@devoxx.io").
+        .when().get("/basket?emails=david@mix-it.io,jl@mix-it.io").
         then().body("grade", equalTo(4)).
         and().body("sum", equalTo(2000));
   }
@@ -409,7 +420,7 @@ expect = chai.expect
 describe 'basket controller unit test', ->
 
   beforeEach ->
-    module 'devoxx'
+    module 'mix-it'
     localStorage['emails']=''
 
   it 'should find a basket controller', ->
@@ -498,6 +509,6 @@ A partir de 10 inscrits, le tarif passe à 900 euros pour tout le monde, de mani
 A partir de 20 inscrits, le tarif passe à 800 euros.
 A partir de 30 inscrits, le tarif passe à 700 euros.
 
-On a hate de vous recevoir, si vous êtes interessé, laissez nous vos coordonées par email à training@morlhon.net 
+On a hate de vous recevoir, si vous êtes interessé, laissez nous vos coordonées par email à training@morlhon.net
 
 -- David & Jean-Laurent

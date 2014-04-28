@@ -86,12 +86,6 @@ On t'a installé Frontpage et IIS, let's go ! T'as 2h.
       <artifactId>http</artifactId>
       <version>1.47</version>
     </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 </project>
 ```
@@ -104,25 +98,28 @@ mkdir -p src/{main,test}/java
 ```
 
 1. On est là pour faire du web. Alors allons-y pour un Hello World classique (c'est bien le classique aussi parfois).
-  Tu peux créer un fichier `index.md` (et oui .md, le classique n'a pas duré longtemps...) à la racine d'une répertoire
+  Tu peux créer un fichier `index.html` à la racine d'une répertoire
   `app` a coté de ton `pom.xml`
 
 ```bash
 mkdir app
-touch index.md
+touch index.html
 ```
 
-Ensuite tu édites `index.md` (md c'est pour markdown mais tu le sais déjà, sauf qu'on commence avec un peu de YAML au
-début, ça s'appelle du YAML Front Matter) et tu colles dedans ça par exemple :
+Ensuite tu édites `index.html` et tu colles dedans ça par exemple :
 
-```Markdown
+```html
 ---
+layout: default
 title: hello mix-it
 ---
-# Hello mix-it
+
+<h1>Hello mix-it</h1>
 
 Je sers une page web avec un projet java en moins de 2 minutes... si si c'est possible
 ```
+
+La section entre les tirets, c'est du Yaml Front Matter.
 
 Dans fluent-http, tout ce qui est dans le répertoire `app` est servi par défaut à la racine de ton serveur.
 Si tu y mets du Html il sera servi tel quel, comme pour le Js, les images etc..
@@ -147,23 +144,23 @@ public class Server {
 1. Exécute la classe `Server` et pointe ton navigateur sur http://localhost:8080
 Normalement, là, tu as moins envie d'utiliser weblo et tomcat, lundi au boulot.
 
-
 ## Des moustaches coté serveur avec Handlebars
 
  1. Tu peux définir tes propres variables dans le YAML front matter
 
- ```Markdown
- ---
- title: hello mix-it
- conference: mix-it
- ---
- # Hello mix-it
-Hello [[conference]] !
- ```
+```Html
+---
+layout: default
+title: hello mix-it
+conference: mix-it
+---
+
+<h1>Hello [[conference]] !</h1>
+```
 
 Sans redémarrer ton serveur, le fichier sera servi et le traitement sera fait coté serveur.
 
-Le langage de template ici est du Handlebars (http://handlebarsjs.com/). Tu peux donc utiliser toutes les commandes
+Le langage de template ici est du [Handlebars](http://handlebarsjs.com/). Tu peux donc utiliser toutes les commandes
 handlebars comme par exemple:
 
 ### Boucle
@@ -313,7 +310,6 @@ package com.acme;
 import net.codestory.http.*;
 
 public class Server {
-
   public static void main(String[] args) {
     new WebServer(routes -> routes.add(PersonResource.class).start();
   }

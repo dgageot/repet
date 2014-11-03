@@ -1,8 +1,10 @@
 package net.codestory;
 
-import net.codestory.http.annotations.*;
+import com.google.common.base.Splitter;
+import net.codestory.http.annotations.Get;
 
-import javax.inject.*;
+import javax.inject.Inject;
+import java.util.List;
 
 public class BasketResource {
   private final BasketFactory basketFactory;
@@ -13,7 +15,9 @@ public class BasketResource {
   }
 
   @Get("/basket?emails=:emails")
-  public Basket basket(String emails) {
+  public Basket basket(String emailList) {
+    List<String> emails = Splitter.on(",").omitEmptyStrings().splitToList(emailList);
+
     return basketFactory.basket(emails);
   }
 }

@@ -1,17 +1,27 @@
 package net.codestory;
 
-import static net.codestory.http.misc.Fluent.*;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.io.Resources;
 
-import java.util.*;
-
-import net.codestory.http.templating.*;
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
 
 public class Tags {
-  private Map<String, List<String>> findAll() {
-    return (Map<String, List<String>>) Site.get().getData().get("tags");
+  public long count(String category, String... developerTags) {
+    List<String> tagsForCategory = findAll().get(category);
+
+    return Stream.of(developerTags).filter(tag -> tagsForCategory.contains(tag)).count();
   }
 
-  public long count(String component, String... tags) {
-    return of(tags).count(of(findAll().get(component)).toSet()::contains);
+  Map<String, List<String>> findAll() {
+    try {
+      return new ObjectMapper().readValue(Resources.getResource("tags.json"), new TypeReference<Map<String, List<String>>>() {
+      });
+    } catch (IOException e) {
+      throw new RuntimeException("Unable to load tags list", e);
+    }
   }
 }

@@ -1,8 +1,8 @@
 package net.codestory;
 
-import static net.codestory.http.misc.Fluent.*;
-
-import javax.inject.*;
+import javax.inject.Inject;
+import java.util.List;
+import java.util.stream.Stream;
 
 public class BasketFactory {
   private final Developers developers;
@@ -14,22 +14,20 @@ public class BasketFactory {
     this.tags = tags;
   }
 
-  public Basket basket(String emails) {
+  public Basket basket(List<String> emails) {
     Basket basket = new Basket();
 
-    for (Developer developer : findDeveloper(emails)) {
+    Stream<Developer> developers = emails.stream().map(email -> this.developers.find(email));
+
+    developers.forEach(developer -> {
       basket.test += tags.count("test", developer.tags);
       basket.back += tags.count("back", developer.tags);
       basket.database += tags.count("database", developer.tags);
       basket.front += tags.count("front", developer.tags);
       basket.hipster += tags.count("hipster", developer.tags);
       basket.sum += developer.price;
-    }
+    });
 
     return basket;
-  }
-
-  private Iterable<Developer> findDeveloper(String emails) {
-    return split(emails, ",").map(of(developers.findAll()).uniqueIndex(dev -> dev.email)::get).notNulls();
   }
 }

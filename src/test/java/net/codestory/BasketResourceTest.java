@@ -1,19 +1,29 @@
 package net.codestory;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
-import org.junit.*;
+import static java.util.Arrays.asList;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
 
+@RunWith(MockitoJUnitRunner.class)
 public class BasketResourceTest {
-  @Test
-  public void basket() {
-    Basket expectedBasket = new Basket();
-    BasketFactory basketFactory = mock(BasketFactory.class);
-    when(basketFactory.basket("david@devoxx.io,jl@devoxx.io")).thenReturn(expectedBasket);
+  @Mock
+  BasketFactory basketFactory;
 
-    BasketResource basketResource = new BasketResource(basketFactory);
-    Basket basket = basketResource.basket("david@devoxx.io,jl@devoxx.io");
+  @InjectMocks
+  BasketResource resource;
+
+  @Test
+  public void create_basket_for_emails() {
+    Basket expectedBasket = new Basket();
+    when(basketFactory.basket(asList("david@devoxx.io", "jeanlaurent@devoxx.io"))).thenReturn(expectedBasket);
+
+    Basket basket = resource.basket("david@devoxx.io,jeanlaurent@devoxx.io");
 
     assertThat(basket).isSameAs(expectedBasket);
   }

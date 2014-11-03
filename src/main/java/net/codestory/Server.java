@@ -1,24 +1,20 @@
 package net.codestory;
 
-import net.codestory.http.*;
-import net.codestory.http.injection.*;
-import net.codestory.http.routes.*;
-
-import com.google.inject.*;
+import net.codestory.http.Configuration;
+import net.codestory.http.WebServer;
+import net.codestory.http.routes.Routes;
 
 public class Server {
   public static void main(String[] args) {
     new WebServer(new ServerConfiguration()).start();
   }
 
-  public static class ServerConfiguration extends AbstractGuiceConfiguration {
-    public ServerConfiguration(Module... modules) {
-      super(modules);
-    }
-
+  public static class ServerConfiguration implements Configuration {
     @Override
-    protected void configure(Routes routes, Injector injector) {
-      routes.add(BasketResource.class);
+    public void configure(Routes routes) {
+      routes
+        .add(IndexResource.class)
+        .add(BasketResource.class);
     }
   }
 }

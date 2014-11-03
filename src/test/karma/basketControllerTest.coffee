@@ -1,43 +1,26 @@
-expect = chai.expect
+should = chai.should()
 
-describe 'basket controller unit test', ->
-
+describe 'Basket tests', ->
   beforeEach ->
     module 'devoxx'
-    localStorage['emails']=''
+    inject ($controller, $httpBackend) ->
+      @controller = $controller 'BasketController'
+      @http = $httpBackend
 
-  it 'should find a basket controller', ->
-    expect(@BasketController).not.to.equal null
+  it 'should start with an empty basket', ->
+    @controller.emails.should.eql []
+    @controller.basket.should.eql {}
 
-  it 'should call the method inside a controller with no emails', inject ($controller, $httpBackend) ->
-    $httpBackend.expectGET('/basket?emails=').respond ''
+  it 'should refresh basket after adding a developer', ->
+    @http.expectGET('/basket?emails=foo@bar.com').respond '{"test":0,"back":0,"database":0,"front":0,"hipster":0,"sum":0}'
+    @controller.add 'foo@bar.com'
+    @http.flush()
 
-    controller = $controller 'BasketController'
-
-    console.log 'woot !'
-
-    $httpBackend.flush()
-
-    expect(controller.emails).to.eql []
-
-  it 'should call the method inside a controller with emails', inject ($controller, $httpBackend) ->
-    localStorage['emails']='["foo@bar.com"]'
-    $httpBackend.expectGET('/basket?emails=foo@bar.com').respond '{"test":0,"back":0,"database":0,"front":0,"hipster":0,"sum":0}'
-
-    controller = $controller 'BasketController'
-
-    $httpBackend.flush()
-
-    expect(controller.emails).to.eql ['foo@bar.com']
-
-  it 'should call the method add', inject ($controller, $httpBackend) ->
-    $httpBackend.expectGET('/basket?emails=').respond ''
-    $httpBackend.expectGET('/basket?emails=foo@bar.com').respond '{"test":0,"back":0,"database":0,"front":0,"hipster":0,"sum":0}'
-
-    controller = $controller 'BasketController'
-    controller.add 'foo@bar.com'
-
-    $httpBackend.flush()
-
-    expect(localStorage['emails']).to.eql '["foo@bar.com"]'
-    expect(controller.emails).to.eql ['foo@bar.com']
+    @controller.emails.should.eql ['foo@bar.com']
+    @controller.basket.should.eql
+      test: 0
+      back: 0
+      database: 0
+      front: 0
+      hipster: 0
+      sum: 0

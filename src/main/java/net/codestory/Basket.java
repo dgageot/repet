@@ -1,10 +1,10 @@
 package net.codestory;
 
 public class Basket {
-  long test;
+  long front;
   long back;
   long database;
-  long front;
+  long test;
   long hipster;
   long sum;
 }

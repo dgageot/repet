@@ -125,7 +125,7 @@ public class Server {
 1. Then you execute the `Server` class et open up a browser and aim it towards http://localhost:8080
 If everything goes to plan, just about now, you'll feel less inclined to use weblo or tomcat, monday at work.
 
-( if you're on the fancy side of stuff, and that you change your working dir, I know crazy but some of you do it, you'll have to point your working dir to the root of your app. TODO: INSERT WORKING DIR PROP HERE )
+( if you're on the fancy side of stuff, and that you change your working dir, I know crazy but some of you do it, you'll have to point your working dir to the root of your app.It's usually done in the working dir input field in the run class dialog of your IDE )
 
 ## Server Side Mustaches with Handlebars
 
@@ -205,7 +205,8 @@ You can do much more things in Handlebars, but keep in mind it's call logic less
 
 ### Test
 
-+ Extract Configuration to make it usable for tests
+We are going to extract a Configuration object to make it usable for tests.
+Like this:
 
 ```java
 public class Server {
@@ -222,7 +223,10 @@ public class Server {
 }
 ```
 
-+ e2e test
+Then we are going to write a end to end test, also called sometimes acceptance test, UI test or test-which-brake-too-often-but-are-really-really-life-saver.
+
+So take an hour, setup selenium, install all drivers. Just kidding !
+We do everything for you, with our hand cooked selenium wrapper called SimpleLenium
 
 ```xml
 <dependency>
@@ -260,14 +264,13 @@ public class BasketSeleniumTest extends SeleniumTest {
 
 Don't need to install Chrome, Selenium, PhantomJS or what. It just works.
 
-Pour éviter les conflits en cas de parallelisations des tests, fluent-http possède une méthode `startOnRandomPort` qui permet d'être sûr d'éviter les conflits de bind.
+To avoid port conflict (two server asking for the same port) with test running in parallel, fluent-http has a `startOnRandomPort` method which makes sure to aboid bind conflict.
 
-## Service REST Simple
+## Simple REST Service
 
-Fluent-http expose vos beans en json par défaut.
+Everytime Fluent-http see a java bean or pojo in a service method signature it expose it in 'json' by default. It's build from the ground up to be a web container.
 
-Par exemple pour retourner un basket qui pourrait être défini comme cela :
-
+For instance if you want to return a Basket object, it could be defined like this :
 
 ```java
 public class Basket {
@@ -279,8 +282,7 @@ public class Basket {
   long sum;
 }
 ```
-
-Vous pouvez facilement ajouter une ressource à votre serveur http comme cela :
+You can easily add a resource to you http server like this :
 
 ```java
 public class BasketResource {
@@ -291,7 +293,7 @@ public class BasketResource {
 }
 ```
 
-Vous le branchez dans vos routes :
+Then you add it to your routes
 
 ```Java
 public class ServerConfiguration implements Configuration {
@@ -302,9 +304,8 @@ public class ServerConfiguration implements Configuration {
 }
 ```
 
-Et en appelant http://localhost:8080/basket vous obtenez :
+And when you call http://localhost:8080/basket You get :
 
-TODO
 
 ```json
 {

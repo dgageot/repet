@@ -427,15 +427,15 @@ ng-app: devoxx
 <script src="/webjars/angularjs/1.3.0/angular.min.js"></script>
 ```
 
-# Tests unitaires, intégrations, javascript, d'interfaces !
+# Unit, integration, javascript & ui Testing !
 
-## Tester unitairement ses resources avec JUnit
+## Resource Unit Testing with JUnit
 
-Rien d'extraordinaire dans cette section.
+Nothing, *that* modern in here.
 
-Nous utilisons des utilitaires de tests bien connus, comme assertj (un fork de fest-assert) et mockito
+We use the usual suspects of the industry here, assertj (fluent assertions) & mockito (mocking).
 
-Tu peux les ajouter facilement à ton pom en ajoutant :
+You can add those two libraries like this in your pom :
 
 ```xml
     <dependency>
@@ -453,6 +453,54 @@ Tu peux les ajouter facilement à ton pom en ajoutant :
     </dependency>
 ```
 
+Let's try starting to write the resources we would need to do our app for Jean-Claude.
+
+We need some kind of developer domain object :
+
+```java
+public class Developer {
+  public String prenom;
+  public String job;
+  public String ville;
+  public String photo;
+  public String description;
+  public String email;
+  public String[] tags;
+  public int price;
+}
+```
+
+We need some kind of developers list :
+```json
+[
+  {
+    "email": "david@devoxx.io",
+    "prenom": "David",
+    "job": "Java/Web Developer",
+    "ville": "Paris, France",
+    "description": "Bonjour, je suis développeur indépendant. Ma passion ? L'écriture de logiciels pointus mais simples.",
+    "tags": [
+      "Java", "Web", "Javascript", "Agile", "Formation", "Git", "Coaching", "Test"
+    ],
+    "photo": "david",
+    "price": 1000
+  },
+  {
+    "email": "jeanlaurent@devoxx.io",
+    "prenom": "Jean-Laurent",
+    "job": "Programmer",
+    "ville": "Houilles, France",
+    "description": "WILL WRITE CODE FOR FOOD",
+    "tags": [
+      "Java", "Test", "CoffeeScript", "Node", "Javascript"
+    ],
+    "photo": "jl",
+    "price": 1000
+  }
+]
+```
+
+So let's write our own version of an "Oracle Database" :
 ```java
 public class Developers {
   public Developer find(String email) {
@@ -469,6 +517,8 @@ public class Developers {
 }
 ```
 
+Here's a corresponding tests :
+Yes it's a test based on data, no it's not perfect, yes it's a good exapple of unit testing.
 
 ```java
 import org.junit.Test;

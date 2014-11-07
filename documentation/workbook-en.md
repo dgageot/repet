@@ -535,19 +535,20 @@ public class DevelopersTest {
 }
 ```
 
-## Tester unitairement ses controlleurs Angular avec Karma
+## Unit testing angular controller with Karma
 
-On peut tester unitairement son controleur Angular.
+We can unit test angular controller.
 
-On utilise Karma, en conjonction avec Jasmine pour cela.
-Il faut que les fichiers de angular soient disponibles dans le path.
-Si tu utilises les webjars, c'est le bon moment pour lancer un `bower install` dans ta console.
+We are going to put a little step in the javascript world, using Karma & Jasmine.
 
-Utilise le fichier de configuration de karma que tu trouveras sur la clé USB
-Si tu n'as pas Chrome sur ta machine tu peux ouvrir le fichier de configuration et remplacer `chrome` par `safari`, `firefox`... ou `ie` !
+You need to have the angular files available in the path.
+If you use the webjars, it's a good time to type in a `bower install` in your console.
 
-Le test se lance en tapant `karma start karma.conf.coffee`
-(si karma n'est pas dans ton path, tu peux le trouver dans node_modules/karma/bin/karma`)
+Use the karma configuration file you'll find in the usb stick.
+If you don't use Chrome on your laptop, you can open a configuration file and replace `chrome` by`safari`, `firefox`... or `ie` !
+
+Testing are launched using `karma start karma.conf.coffee`
+(If karma is not in the path, you can find them in `node_modules/karma/bin/karma`)
 
 ```coffee
 should = chai.should()
@@ -698,9 +699,9 @@ describe 'Basket tests', ->
       sum: 0
 ```
 
-## Ajouter bootstrap
+## Add bootstrap
 
-Pour ajouter bootstrap tu peux utiliser les webjars. Ajoutes à ton pom :
+To add bootstrap you can use webjars. You add to your pom :
 
 ```xml
 <dependency>
@@ -710,7 +711,7 @@ Pour ajouter bootstrap tu peux utiliser les webjars. Ajoutes à ton pom :
 </dependency>
 ```
 
-Si tu utilises le YAML Front Matter tu peux carrément le rajouter dans le header :
+If you use the YAML Front Matter you can easly add in the header :
 
 ```YAML
 ---

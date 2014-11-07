@@ -343,13 +343,15 @@ public class ServerConfiguration implements Configuration {
 }
 ```
 
-## Tester en intégration ses resources avec RestAssured
+## Integration testing with RestAssured
 
-Les tests d'intégration au niveau resource sont interessants car ils vérifient si notre application est proprement wrappée dans une resource REST.
-On va se concentrer sur les entrées/sorties http.
+Integration tests at the resource level are intresting because it's the only way to check that our domain code is properly wrapped into a REST resource.
+You should concentrate on testing on http input/output. while mocking the domain code.
 
-On utilise pour cela RestAssured, qui propose une API fluent pour décrire ces tests qui sont parfois assez complexes à écrire.
+We use the RestAssured library which offer a fluent API to write tests. Testing the http interaction layer is quite tedious to write.
 
+
+Add to your pom the dependency :
 ```xml
     <dependency>
       <groupId>com.jayway.restassured</groupId>
@@ -359,10 +361,11 @@ On utilise pour cela RestAssured, qui propose une API fluent pour décrire ces t
     </dependency>
 ```
 
-Un test RestAssured à besoin du serveur pour tourner, mais plutôt que de les lancer avec les tests d'intégration, avec faisafe, nous préférons les utiliser comme des tests unitaires.
-Il est parfaitement possible d'executer cela dans un test unitaire a condition que le serveur soit capable de démarrer trés rapidement.
-Il se trouve que fluent-http est trés bon dans ce domaine.
+RestAssured needs a real http server. This is usually done in the integration testing phase through the failsafe maven plugin. But we are crazy modern guys, we don't want to have distinguish those tests since we are able to execute integration test at almost the same speed as unit tests.
+To be able to have integration test execute as fast as unit test, you need a lighting fast webserver, that's why we use fluent-http. It's very good at it.
+Less configuration, lighting speed, you saved at least many hours in your project...
 
+Here's a typical skeleton for a REST test.
 ```java
 public class BasketRestTest {
   WebServer webServer = new WebServer(new ServerConfiguration()).startOnRandomPort();
@@ -377,7 +380,7 @@ public class BasketRestTest {
 
 ## Angular
 
-Pour ajouter angularjs tu peux utiliser les webjars. Ajoutes à ton pom :
+To add angularjs the java-way you can use webjars, webjars are a collection of javascript library emebeded in jar properly registered in a maven repository.( don''t tell about this the javascript guys they could have a heart attack)
 
 ```xml
     <dependency>
@@ -386,16 +389,15 @@ Pour ajouter angularjs tu peux utiliser les webjars. Ajoutes à ton pom :
       <version>1.3.0</version>
     </dependency>
 ```
+You'll use the `/webjars/angularjs/1.3.0/angular.min.js` path in `<script>` tag.
+You can do the same thing, with all your front-end dependencies: javascript library, css library, fonts, icons etc...
 
-Tu peux accéder en utilisant le chemin `/webjars/angularjs/1.3.0/angular.min.js` dans une balise `<script>`.
-Tu peux agir de la même manière avec toutes tes dépendances front.
-
-Sinon il y a [bower](http://bower.io/). C'est plus hype mais tu dois déplacer les fichiers à la main.
+If you thing embedding a javascript library in a zip file, renamed a .jar is kind of completly mad, you can use [bower](http://bower.io/). It's a bit more hype, but you have to move the file by hand from the bower directory to your `app` directory.
 
 ### Use coffeescript
 
-Tu peux écrire tes controlleurs angular en coffee, avec une syntaxe de classe, cela te permet d'isoler facilement les éléments.
-par exemple :
+You can write your angular controller in coffeescript using a class syntax. This enable to properly and easly isolate the scope variables.
+For instance :
 
 ```coffee
 angular.module 'devoxx', []
@@ -408,13 +410,10 @@ angular.module 'devoxx', []
     search: ->
       @$http.get("/basket").success (data) =>
         @basket = data
-
 ```
 
-Il te suffit ensuite de coller un entête ng-app dans le yaml front matter comme cela :
-
-TODO: ajouter src angular
-
+To make it work you can add the ng-app tag by hand, or put it in the YAML front matter.
+don't forget to add the angular lib script tag.
 ```yaml
 ---
 title: Hello Devoxx
@@ -424,6 +423,8 @@ ng-app: devoxx
   {{controller.info}}
   <a href="" ng-click="controller.search()">search</a>
 </div>
+
+<script src="/webjars/angularjs/1.3.0/angular.min.js"></script>
 ```
 
 # Tests unitaires, intégrations, javascript, d'interfaces !

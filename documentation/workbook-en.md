@@ -573,9 +573,7 @@ describe 'Basket tests', ->
     @controller.basket.should.eql {}
 ```
 
-maven frontend plugin
-=======
-
+this is a `package.json` file, it's the `pom.xml` in the node world. It enables us to define all the libraries and dependencies we need for karma to launch properly.
 
 ```json
 {
@@ -594,11 +592,10 @@ maven frontend plugin
         "karma-jsmockito-jshamcrest": "0.0.6",
         "karma-phantomjs-launcher": "^0.1.4",
         "jsmockito": "^1.0.5",
-        "mocha": "^1.20.1",
         "protractor": "^0.20.1"
     },
     "scripts": {
-        "test": "node_modules/mocha/bin/mocha --reporter dot google-scripts/*-test.js"
+        "test": "node_modules/mocha/bin/karma start karma.conf.coffee"
     },
     "repository": {
         "type": "git",
@@ -606,9 +603,12 @@ maven frontend plugin
     }
 }
 ```
+maven frontend plugin
+=======
 
 Close your eyes, welcome to the wonderful world of maven xml and plugins :
-the maven frontend plugin is able to do dirty stuff you don't want to have to do by hand, especially if you haven't done node stuff recently. So the price to pay is the following horribles 20 lines. But trust us, it's a life saver.
+the maven frontend plugin is able to do dirty stuff you don't want to have to do by hand, especially if you haven't done node stuff recently. So the price to pay is the following horribles 40 lines. But trust us, it's a life saver, it automates reliably the process of launching javascript tests trough karma.
+
 
 ```xml
 <profiles>
@@ -687,6 +687,8 @@ the maven frontend plugin is able to do dirty stuff you don't want to have to do
 
 ### http service
 
+Here you can write a more complicated test, to handle some tricky situation where your angular controller is making an http call (wich occurs... very often)
+
 ```coffee
 should = chai.should()
 
@@ -712,7 +714,9 @@ describe 'Basket tests', ->
       sum: 0
 ```
 
-## Add bootstrap
+## Deuglifying the page.
+
+You can do your own css, but you can also use css webjars like Twitter Bootstrap to ease the pain of spending two hours having 3 divs side by side.
 
 To add bootstrap you can use Webjars. You add to your pom:
 
@@ -732,5 +736,7 @@ title: recruteur.io
 styles: ['/webjars/bootstrap/3.1.1/css/bootstrap.css']
 ---
 ```
+
+Now you should have everything you need to finish the app, what are you waiting, Jean-Claude is not a patient man.
 
 -- David & Jean-Laurent

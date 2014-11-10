@@ -557,7 +557,9 @@ Use the karma configuration file you'll find on the usb key.
 If you don't use Chrome on your laptop, you can open a configuration file and replace `chrome` by `safari`, `firefox`... or `ie` !
 
 Testing are launched using `karma start karma.conf.coffee`
-(If karma is not in the path, you can find them in `node_modules/karma/bin/karma`)
+(If karma is not in the path, you can find them in `node_modules/karma/bin/karma`).
+
+We use `angular-mocks` (a default testing library for angular) in conjunction with `chai.js` which gives us nice fluent assertions. The testing library used here is `jasmine`. The syntax is `coffeescript`.
 
 ```coffee
 should = chai.should()
@@ -687,7 +689,7 @@ the maven frontend plugin is able to do dirty stuff you don't want to have to do
 
 ### http service
 
-Here you can write a more complicated test, to handle some tricky situation where your angular controller is making an http call (wich occurs... very often)
+Here you can write a more complicated test, to handle some tricky situation where your angular controller is making an http call (wich occurs... very often).
 
 ```coffee
 should = chai.should()
@@ -737,6 +739,8 @@ styles: ['/webjars/bootstrap/3.1.1/css/bootstrap.css']
 ---
 ```
 
-Now you should have everything you need to finish the app, what are you waiting, Jean-Claude is not a patient man.
+Now you should have everything you need to finish the app.
+
+What are you waiting ?? Jean-Claude is not a patient man and as during estimation phase you said the project could take between 3 hours to two days, Jean-Claude thinks you can make it in 2 hours, or your job will be outsourced in a far away countries, where developers are cheap.
 
 -- David & Jean-Laurent

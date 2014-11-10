@@ -73,9 +73,9 @@ We have installed FrontPage and IIS on your laptop, you've got 2 hours!
 </project>
 ```
 
-So, yes, we're going to use java 8. Fasten your seat belts.
+So, yes, we're going to use java 8, we have waited for it for too long, not to use it right away. Fasten your seat belts.
 
-1. Then you create, like a grownup, the sources & tests directories (yeah, I know so modern, we got tests too..).
+1. Then you create, like a grownup, the sources & tests directories (yeah, we got tests too, I know so modern ...).
 
 ```bash
 mkdir -p src/{main,test}/java
@@ -83,7 +83,7 @@ mkdir -p src/{main,test}/java
 
 (btw you can create them with your mouse, but it's less hype and stylish. Modern web remember?)
 
-1. We are here to make a webapp. But we are going to be classical for a change and start with a good old 'Hello World'
+1. We are here to make a webapp. But we are going to be classical for a change and start with a good old 'Hello World'.
 
   You should create an `index.html` at the root of an `app` directory beside your `pom.xml` like this:
 
@@ -105,15 +105,16 @@ title: Hello Devoxx
 <p>I can serve a web page in a java app in less than 2 minutes... Yes, I can!</p>
 ```
 
-Before you ask, the header in between dashes is called Yaml Front Matter. You can enter a bunch of information using Yaml syntax there. We won't go into more details there, but it's quite convenient.
+Before you ask, the header in between dashes is called Yaml Front Matter. You can enter a bunch of information using Yaml syntax there and everything after the last `---` is going to be plain old HTML. You can do crazy stuff in here, if you're nice you'll see a glimpse of it, but we won't go into more details there, but trust us, it's quite convenient.
 
 In fluent-http, everything you put in the `app` directory is served at the root of your webapp.
 If you put some html, it will be serve, as-is. Same for js files, images etc...
-If you put some Less files, they will be compiled to css and served (with a cache don't worry), the same applied to Coffeescript compiled to Javascript, Markdown to Html and a few others.
+
+If you put some Less files, they will be compiled to css and served (with a cache don't worry), the same applies to Coffeescript compiled to Javascript, Markdown to Html and a few others.
 
 1. Ok it's a java workshop or what? When will I write some Java Code?!:
 
-  In `src/main/java` create a `Server` class. Like this one:
+  Just about now : In `src/main/java` create a `Server` class. Like this one:
 
 ```java
 import net.codestory.http.*;
@@ -126,15 +127,15 @@ public class Server {
 ```
 
 1. Then you execute the `Server` class, open a browser and aim it towards http://localhost:8080
-If everything goes according to the to plan, just about now, you'll feel less inclined to use weblo or tomcat, monday at work.
+If everything goes according to plan, just about now, you'll feel less inclined to use weblo or tomcat, monday at work. I started a java program that serves content in 1 line of code and 5 minutes...
 
-(If you're on the fancy side of stuff, and that you change your working dir, I know crazy but some of you do it, you'll have to point your working dir to the root of your app. It's usually done in the working dir input field in the run class dialog of your IDE)
+(If you're on the fancy side of stuff, and that you change your working dir, I know *crazy*, but some of you do it, you'll have to point your working dir to the root of your app. It's usually done in the working dir input field in the run class dialog of your IDE)
 
 ## Server Side Mustaches with Handlebars
 
  1. Fluent-http provides some kind of server side, logic less, templating.
 
-Change your server to the following, we add a route to '/' which defines a conference variable to be used in your template.
+Change your server to the following, we add a route to '/' which defines a conference variable to be used in your template in a Java8-lambdaish way.
 
 ```java
 public class Server {
@@ -154,11 +155,13 @@ title: hello mix-it
 <h1>Hello [[conference]]!</h1>
 ```
 
-The templating language used here is [Handlebars](http://handlebarsjs.com/). You can use every handlebar instructions but within `[[` and `]]` instead the usual `{{` and `}}`.
+The templating language used here is [Handlebars](http://handlebarsjs.com/). You can use every handlebar instructions but within `[[` and `]]` instead the usual `{{` and `}}`. As you may know, we are going to use some angular code in a few minutes, so we changed the way handlebars detect it's tag so it doesn't clash with angular. You can then use a mix of server side and client side content.
 
 Woot! Some Handlebars and some java 8 lambda at the same time. Everything is rendered server side. Consider it the jsp of 2014.
 
 ### Handlebars supports Loops
+
+In the app, Jean-Clause wants us to display a bunch of developers, so we need a way to iterate around a list of developers :
 
 ```java
 public class Server {
@@ -177,6 +180,9 @@ Display the loop content like this:
 ```
 
 ### You can use Java Beans, Pojos, Java Objects, you name it.
+
+But developers aren't define only by their names, (we tend to say the define themselves by the number of bugs they produces but that's another story).
+Developers needs properties let's start simply with name and price.
 
 ```java
 public class Developer {
@@ -348,7 +354,7 @@ public class ServerConfiguration implements Configuration {
 ## Integration testing with RestAssured
 
 Integration tests at the resource level are interesting because it's the only way to check that our domain code is properly wrapped into a REST resource.
-You should concentrate on testing on http input/output. While mocking the domain code.
+You should concentrate on testing on http input/output. While mocking/stubbing the domain code.
 
 We use the RestAssured library which offers a fluent API to write tests. Testing the http interaction layer is quite tedious to write.
 
@@ -437,7 +443,7 @@ ng-app: devoxx
 
 Nothing, *that* modern in here.
 
-We use the usual suspects of the industry here, `AssertJ`` (fluent assertions) & Mockito (mocking).
+We use the usual suspects of the industry here, `AssertJ` (fluent assertions) & `Mockito` (mocking).
 
 You can add those two libraries like this in your pom:
 

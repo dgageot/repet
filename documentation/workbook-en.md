@@ -568,6 +568,8 @@ describe 'Basket tests', ->
 ```
 
 maven frontend plugin
+=======
+
 
 ```json
 {
@@ -598,6 +600,9 @@ maven frontend plugin
     }
 }
 ```
+
+Close your eyes, welcome to the wonderful world of maven xml and plugins :
+the maven frontend plugin is able to do dirty stuff you don't want to have to do by hand, especially if you haven't done node stuff recently. So the price to pay is the following horribles 20 lines. But trust us, it's a life saver.
 
 ```xml
 <profiles>
@@ -674,7 +679,7 @@ maven frontend plugin
 </profiles>
 ```
 
-### Service http
+### http service
 
 ```coffee
 should = chai.should()
